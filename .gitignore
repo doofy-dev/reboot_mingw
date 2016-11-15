@@ -77,3 +77,10 @@
 /lib/soil/include/stbi_DDS_aug_c.h
 /lib/soil/include/stbi_DDS_aug.h
 /lib/soil/include/image_DXT.c
+/lib/cereal/external/
+/lib/cereal/macros.hpp
+/lib/cereal/archives/
+/lib/cereal/details/
+/lib/cereal/types/
+/lib/cereal/access.hpp
+/lib/cereal/cereal.hpp

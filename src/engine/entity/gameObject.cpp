@@ -1,4 +1,5 @@
 #include <engine/entity/gameObject.h>
+#include <engine/component/component.h>
 
 namespace reboot
 {
@@ -27,5 +28,10 @@ namespace reboot
 	{
 		
 	}
-	
+
+    void GameObject::Update() {
+        for(Component* component:components)
+            component->Update();
+    }
+
 }

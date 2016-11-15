@@ -31,5 +31,7 @@ namespace reboot
 		Component* getComponentAt(unsigned int index);
 		void addComponent(Component *component);
 		bool isActive() { return m_IsActive; }
+
+        void Update();
 	};
 }

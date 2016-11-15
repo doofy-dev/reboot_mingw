@@ -46,7 +46,7 @@ link_directories(${GLFW_LIB})
 set(ADAPTER_SOURCE
         src/adapter/canvas/canvas.cpp src/adapter/canvas/window.cpp src/adapter/context/openGL/oglShader.cpp src/adapter/context/shaderProgram.cpp
         src/driver/contextManager.cpp
-        src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp
+        src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
         )
 set(ADAPTER_INCLUDE
         include/adapter/canvas/canvas.h include/adapter/canvas/window.h include/adapter/context/openGL/oglShader.h include/adapter/context/shaderProgram.h
