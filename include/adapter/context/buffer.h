@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../preprocessor.h"
+#include <preprocessor.h>
 
 namespace reboot_adapter
 {

@@ -43,18 +43,18 @@ set_target_properties(glew_static PROPERTIES
         IMPORTED_LOCATION ${GLEW_LIB})
 link_directories(${GLFW_LIB})
 
-set(ADAPTER_SOURCE
+set(REBOOT_SOURCE
         src/adapter/canvas/canvas.cpp src/adapter/canvas/window.cpp src/adapter/context/openGL/oglShader.cpp src/adapter/context/shaderProgram.cpp
         src/driver/contextManager.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
         )
-set(ADAPTER_INCLUDE
+set(REBOOT_INCLUDE
         include/adapter/canvas/canvas.h include/adapter/canvas/window.h include/adapter/context/openGL/oglShader.h include/adapter/context/shaderProgram.h
         include/driver/contextManager.h
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
-        )
+        include/driver/mesh/mesh.h include/adapter/context/indexBuffer.h include/adapter/context/openGL/oglIndexBuffer.h include/adapter/opengl.h)
 
-set(SOURCE_FILES main.cpp ${ADAPTER_SOURCE} ${ADAPTER_INCLUDE})
+set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/adapter/context/openGL/oglIndexBuffer.cpp)
 
 #dll export
 #add_library(reboot SHARED ${SOURCE_FILES})
