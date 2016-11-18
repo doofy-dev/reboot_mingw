@@ -9,9 +9,12 @@ namespace reboot_adapter
 	protected:
 		unsigned int m_BufferID;
 		unsigned int m_ComponentCount;
-		Buffer():m_BufferID(0),m_ComponentCount(0){}
 
-		virtual ~Buffer(){}
+
+    public:
+        Buffer():m_BufferID(0),m_ComponentCount(0){}
+
+        virtual ~Buffer(){}
 		virtual void bind(){}
 		virtual void unbind(){}
 		virtual void clean(){}
