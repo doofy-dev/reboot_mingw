@@ -6,6 +6,7 @@
 
 namespace reboot_adapter{
     class REBOOT_API OGLVertexArray:public VertexArray{
+
     public:
         OGLVertexArray();
         ~OGLVertexArray();

@@ -3,22 +3,24 @@
 #include <preprocessor.h>
 #include <adapter/context/buffer.h>
 
+
+//@TODO: Indexbuffer - Buffer talán nem jó leszármaztatva egymásból
+//@TODO: Esetleg a buffer maga csak egy tároló legyen ID-vel, virtual bind/unbind-al (nem is rossz ötlet)
 namespace reboot_adapter {
     class REBOOT_API IndexBuffer : public Buffer {
     protected:
         unsigned *m_Data;
-        unsigned m_Count;
     public:
-        IndexBuffer(unsigned *data, unsigned count) : Buffer(), m_Data(data), m_Count(count) {
-            create();
+        IndexBuffer(unsigned *data, unsigned count) : Buffer(count), m_Data(data) {
+            load();
         }
 
         unsigned *getData() {
             return m_Data;
         }
 
-    protected:
-        virtual void create() {}
+        virtual void create() override {}
+        virtual void load() override {}
 
         virtual void bind() override {}
 

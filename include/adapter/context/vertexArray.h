@@ -5,15 +5,15 @@
 #include <vector>
 
 namespace reboot_adapter{
-    class REBOOT_API VertexArray : public Buffer{
+    class REBOOT_API VertexArray{
     protected:
         std::vector<Buffer*> m_Buffers;
-
+        unsigned m_BufferID;
     public:
         VertexArray():Buffer() {}
         virtual ~VertexArray(){}
         virtual void addBuffer(Buffer* buffer, unsigned index){}
-        virtual void bind() override{}
-        virtual void unbind() override{}
+        virtual void bind() {}
+        virtual void unbind() {}
     };
 }

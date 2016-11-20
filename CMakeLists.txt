@@ -52,7 +52,7 @@ set(REBOOT_INCLUDE
         include/adapter/canvas/canvas.h include/adapter/canvas/window.h include/adapter/context/openGL/oglShader.h include/adapter/context/shaderProgram.h
         include/driver/contextManager.h
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
-        include/driver/mesh/mesh.h include/adapter/context/indexBuffer.h include/adapter/context/openGL/oglIndexBuffer.h include/adapter/opengl.h include/adapter/context/vertexArray.h include/adapter/context/openGL/oglVertexArray.h)
+        include/driver/mesh/mesh.h include/adapter/context/indexBuffer.h include/adapter/context/openGL/oglIndexBuffer.h include/adapter/opengl.h include/adapter/context/vertexArray.h include/adapter/context/openGL/oglVertexArray.h include/adapter/context/openGL/oglBuffer.h)
 
 set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/adapter/context/openGL/oglIndexBuffer.cpp src/adapter/context/openGL/oglVertexArray.cpp)
 

@@ -4,21 +4,26 @@
 
 namespace reboot_adapter
 {
+
+//Abstract class for the buffers
 	class REBOOT_API Buffer
 	{
 	protected:
-		unsigned int m_BufferID;
-		unsigned int m_ComponentCount;
-
+		unsigned m_BufferID;
+		unsigned m_Count;
 
     public:
-        Buffer():m_BufferID(0),m_ComponentCount(0){}
+        Buffer(unsigned count):m_BufferID(0),m_ComponentCount(count){
+            create();
+        }
 
         virtual ~Buffer(){}
+        virtual void create(){}
+        virtual void load(){}
 		virtual void bind(){}
 		virtual void unbind(){}
 		virtual void clean(){}
 
-		inline unsigned int getComponentCount() const { return m_ComponentCount; }
+		inline unsigned int getCount() const { return m_ComponentCount; }
 	};
 }
