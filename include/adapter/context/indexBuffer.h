@@ -11,16 +11,13 @@ namespace reboot_adapter {
     protected:
         unsigned *m_Data;
     public:
-        IndexBuffer(unsigned *data, unsigned count) : Buffer(count), m_Data(data) {
-            load();
-        }
+        IndexBuffer(unsigned *data, unsigned count) : Buffer(count), m_Data(data) {}
 
         unsigned *getData() {
             return m_Data;
         }
 
         virtual void create() override {}
-        virtual void load() override {}
 
         virtual void bind() override {}
 

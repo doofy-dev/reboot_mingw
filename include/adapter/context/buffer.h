@@ -17,9 +17,10 @@ namespace reboot_adapter
             create();
         }
 
-        virtual ~Buffer(){}
+        virtual ~Buffer(){
+            clean();
+        }
         virtual void create(){}
-        virtual void load(){}
 		virtual void bind(){}
 		virtual void unbind(){}
 		virtual void clean(){}
