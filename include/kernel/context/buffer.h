@@ -2,7 +2,7 @@
 
 #include <preprocessor.h>
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 
 //Abstract class for the buffers

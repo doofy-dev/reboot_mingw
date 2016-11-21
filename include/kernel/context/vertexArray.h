@@ -1,10 +1,10 @@
 #pragma once
 
 #include <preprocessor.h>
-#include <adapter/context/buffer.h>
+#include <kernel/context/buffer.h>
 #include <vector>
 
-namespace reboot_adapter{
+namespace reboot_kernel{
     class REBOOT_API VertexArray{
     protected:
         std::vector<Buffer*> m_Buffers;

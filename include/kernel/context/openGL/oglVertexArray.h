@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <preprocessor.h>
-#include <adapter/context/vertexArray.h>
+#include <kernel/context/vertexArray.h>
 
-namespace reboot_adapter{
+namespace reboot_kernel{
     class REBOOT_API OGLVertexArray:public VertexArray{
 
     public:

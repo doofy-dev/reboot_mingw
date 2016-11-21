@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../preprocessor.h"
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	struct REBOOT_API ShaderVariable
 	{

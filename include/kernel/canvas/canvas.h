@@ -2,7 +2,7 @@
 
 #include <preprocessor.h>
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	class Canvas
 	{

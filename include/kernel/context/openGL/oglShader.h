@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <vector>
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	class REBOOT_API OGLShader :public ShaderProgram
 	{

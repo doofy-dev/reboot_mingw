@@ -1,8 +1,8 @@
 #pragma once
 #include "../preprocessor.h"
 #include <vector>
-#include "../adapter/canvas/canvas.h"
-#include "../adapter/context/shaderProgram.h"
+#include "../kernel/canvas/canvas.h"
+#include "../kernel/context/shaderProgram.h"
 
 namespace reboot_driver
 {
@@ -10,8 +10,8 @@ namespace reboot_driver
 	{
 	private:
 		short m_ContextType;
-		reboot_adapter::Canvas *m_Canvas;
-		std::vector<reboot_adapter::ShaderProgram*> m_Programs;
+		reboot_kernel::Canvas *m_Canvas;
+		std::vector<reboot_kernel::ShaderProgram*> m_Programs;
 	public:
 		ContextManager(short contextType, short canvasType);
 		void update();

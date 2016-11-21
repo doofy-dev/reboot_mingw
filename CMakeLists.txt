@@ -49,10 +49,10 @@ set(REBOOT_SOURCE
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
         )
 set(REBOOT_INCLUDE
-        include/adapter/canvas/canvas.h include/adapter/canvas/window.h include/adapter/context/openGL/oglShader.h include/adapter/context/shaderProgram.h
+        include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/oglShader.h include/kernel/context/shaderProgram.h
         include/driver/contextManager.h
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
-        include/driver/mesh/mesh.h include/adapter/context/indexBuffer.h include/adapter/context/openGL/oglIndexBuffer.h include/adapter/opengl.h include/adapter/context/vertexArray.h include/adapter/context/openGL/oglVertexArray.h include/adapter/context/openGL/oglArrayBuffer.h include/adapter/context/arrayBuffer.h)
+        include/driver/mesh/mesh.h include/kernel/context/indexBuffer.h include/kernel/context/openGL/oglIndexBuffer.h include/kernel/opengl.h include/kernel/context/vertexArray.h include/kernel/context/openGL/oglVertexArray.h include/kernel/context/openGL/oglArrayBuffer.h include/kernel/context/arrayBuffer.h src/adapter/context/openGL/oglArrayBuffer.cpp)
 
 set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/adapter/context/openGL/oglIndexBuffer.cpp src/adapter/context/openGL/oglVertexArray.cpp)
 

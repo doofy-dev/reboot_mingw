@@ -1,12 +1,10 @@
 #pragma once
 
 #include <preprocessor.h>
-#include <adapter/context/buffer.h>
+#include <kernel/context/buffer.h>
 
 
-//@TODO: Indexbuffer - Buffer talán nem jó leszármaztatva egymásból
-//@TODO: Esetleg a buffer maga csak egy tároló legyen ID-vel, virtual bind/unbind-al (nem is rossz ötlet)
-namespace reboot_adapter {
+namespace reboot_kernel {
     class REBOOT_API IndexBuffer : public Buffer {
     protected:
         unsigned *m_Data;
@@ -18,7 +16,7 @@ namespace reboot_adapter {
         }
 
         virtual void create() override {}
-
+        virtual void clean() override {}
         virtual void bind() override {}
 
         virtual void unbind() override {}

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <preprocessor.h>
-#include <adapter/context/buffer.h>
+#include <kernel/context/buffer.h>
 
-namespace reboot_adapter{
+namespace reboot_kernel{
     class ArrayBuffer : public Buffer{
     protected:
         float* m_Data;

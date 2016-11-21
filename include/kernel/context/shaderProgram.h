@@ -6,7 +6,7 @@
 #include "../../preprocessor.h"
 #include "shaderVariable.h"
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	class REBOOT_API ShaderProgram
 	{

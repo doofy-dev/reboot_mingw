@@ -2,13 +2,13 @@
 
 #include <preprocessor.h>
 #include <glm/gtc/type_ptr.hpp>
-#include <adapter/context/buffer.h>
+#include <kernel/context/buffer.h>
 #include <vector>
 
 namespace reboot_driver {
     class REBOOT_API Mesh {
     private:
-        reboot_adapter::Buffer *VAO, *VBO, *IBO;
+        reboot_kernel::Buffer *VAO, *VBO, *IBO;
     public:
         Mesh();
         ~Mesh();

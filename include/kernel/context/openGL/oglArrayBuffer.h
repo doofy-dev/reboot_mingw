@@ -1,8 +1,8 @@
 #include <preprocessor.h>
-#include <adapter/context/arrayBuffer.h>
+#include <kernel/context/arrayBuffer.h>
 
 #pragma once
-namespace reboot_adapter{
+namespace reboot_kernel{
     class REBOOT_API OGLArrayBuffer : public ArrayBuffer{
     public:
         OGLArrayBuffer(float* data, unsigned count):ArrayBuffer(data,count){}

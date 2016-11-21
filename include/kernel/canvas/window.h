@@ -3,7 +3,7 @@
 #include "canvas.h"
 
 typedef struct GLFWwindow GLFWwindow;
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	class REBOOT_API Window: public Canvas
 	{
