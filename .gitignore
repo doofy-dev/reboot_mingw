@@ -82,5 +82,5 @@
 /lib/cereal/archives/
 /lib/cereal/details/
 /lib/cereal/types/
-/lib/cereal/access.hpp
 /lib/cereal/cereal.hpp
+/lib/cereal/access.hpp
