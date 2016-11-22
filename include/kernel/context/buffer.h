@@ -13,7 +13,7 @@ namespace reboot_kernel
 		unsigned m_Count;
 
     public:
-        Buffer(unsigned count):m_BufferID(0),m_ComponentCount(count){
+        Buffer(unsigned count):m_BufferID(0),m_Count(count){
             create();
         }
 
@@ -25,6 +25,6 @@ namespace reboot_kernel
 		virtual void unbind(){}
 		virtual void clean(){}
 
-		inline unsigned int getCount() const { return m_ComponentCount; }
+		inline unsigned int getCount() const { return m_Count; }
 	};
 }

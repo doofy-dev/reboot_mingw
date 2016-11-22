@@ -3,7 +3,7 @@
 #include <vector>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "../../preprocessor.h"
+#include <preprocessor.h>
 #include "shaderVariable.h"
 
 namespace reboot_kernel
@@ -12,6 +12,7 @@ namespace reboot_kernel
 	{
 	protected:
 		std::vector<ShaderVariable*> m_Variables;
+		std::vector<ShaderVariable*> m_Uniforms;
         ShaderVariable* m_CurrentVariable;
 		unsigned int m_ShaderID;
 	public:

@@ -1,6 +1,6 @@
-#include <adapter/context/shaderProgram.h>
+#include <kernel/context/shaderProgram.h>
 #include <iostream>
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	ShaderProgram::ShaderProgram()
 	{

@@ -1,9 +1,9 @@
-#include <adapter/canvas/window.h>
+#include <kernel/canvas/window.h>
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	Window::Window():Canvas(), m_Window(nullptr)
 	{

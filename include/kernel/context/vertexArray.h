@@ -10,7 +10,7 @@ namespace reboot_kernel{
         std::vector<Buffer*> m_Buffers;
         unsigned m_BufferID;
     public:
-        VertexArray():Buffer() {}
+        VertexArray(){}
         virtual ~VertexArray(){}
         virtual void addBuffer(Buffer* buffer, unsigned index){}
         virtual void bind() {}

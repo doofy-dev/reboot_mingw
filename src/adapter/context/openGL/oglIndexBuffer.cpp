@@ -1,7 +1,7 @@
-#include <adapter/context/openGL/oglIndexBuffer.h>
+#include <kernel/context/openGL/oglIndexBuffer.h>
 #include <GL/glew.h>
 
-namespace reboot_adapter{
+namespace reboot_kernel{
 
     void OGLIndexBuffer::create() {
         glGenBuffers(1, &m_BufferID);

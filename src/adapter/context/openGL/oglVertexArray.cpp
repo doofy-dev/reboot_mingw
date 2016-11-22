@@ -1,7 +1,7 @@
-#include <adapter/context/openGL/oglVertexArray.h>
+#include <kernel/context/openGL/oglVertexArray.h>
 #include <GL/glew.h>
 
-namespace reboot_adapter{
+namespace reboot_kernel{
     OGLVertexArray::OGLVertexArray():VertexArray() {
         glGenVertexArrays(1, &m_BufferID);
     }
@@ -10,7 +10,7 @@ namespace reboot_adapter{
         buffer->bind();
         m_Buffers.push_back(buffer);
         glEnableVertexAttribArray(index);
-        glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, 0, 0);
+        glVertexAttribPointer(index, buffer->getCount(), GL_FLOAT, GL_FALSE, 0, 0);
 
         buffer->unbind();
         unbind();

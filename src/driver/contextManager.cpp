@@ -1,7 +1,7 @@
 #include <driver/contextManager.h>
-#include <adapter/canvas/canvas.h>
-#include <adapter/canvas/window.h>
-#include <adapter/context/openGL/oglShader.h>
+#include <kernel/canvas/canvas.h>
+#include <kernel/canvas/window.h>
+#include <kernel/context/openGL/oglShader.h>
 
 namespace reboot_driver {
     ContextManager::ContextManager(short contextType, short canvasType)
@@ -11,7 +11,7 @@ namespace reboot_driver {
                 break;
             case CANVAS_GLFW:
             default:
-                m_Canvas = new reboot_adapter::Window();
+                m_Canvas = new reboot_kernel::Window();
                 break;
         }
     }

@@ -8,8 +8,7 @@ namespace reboot_kernel
 		virtual ~ShaderVariable()
 		{
 		}
-
-		unsigned int ID;
+        int ID;
 		int size;
 		int length;
 		unsigned int type;

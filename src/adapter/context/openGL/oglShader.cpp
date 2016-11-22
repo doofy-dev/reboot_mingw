@@ -1,8 +1,8 @@
-#include <adapter/context/openGL/oglShader.h>
+#include <kernel/context/openGL/oglShader.h>
 #include <GL/glew.h>
 #include <iostream>
 
-namespace reboot_adapter
+namespace reboot_kernel
 {
 	OGLShader::~OGLShader()
 	{
@@ -74,6 +74,26 @@ namespace reboot_adapter
 
 	void OGLShader::getUniforms()
 	{
+        int numActiveUniforms=0;
+        glGetProgramiv(m_ShaderID, GL_ACTIVE_UNIFORMS, &numActiveUniforms);
+
+        for (unsigned unif = 0; unif < numActiveUniforms; ++unif)
+        {
+
+            std::vector<GLchar> nameData(256);
+            int arraySize = 0;
+            GLenum type = 0;
+            GLsizei actualLength = 0;
+            glGetActiveUniform(m_ShaderID, unif, nameData.size(), &actualLength, &arraySize, &type, &nameData[0]);
+            std::string name((char*)&nameData[0], actualLength - 1);
+
+            //TODO: lenght, type and other infos are missing
+            ShaderVariable *variable = new ShaderVariable();
+            variable->ID=glGetUniformLocation(m_ShaderID,&name[0]);
+            variable->name=&name[0];
+            m_Uniforms.push_back(variable);
+            nameData.clear();
+        }
 	}
 	void OGLShader::getAttributes()
 	{
