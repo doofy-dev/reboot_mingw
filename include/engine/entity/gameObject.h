@@ -13,7 +13,7 @@ namespace reboot
 	class REBOOT_API GameObject
 	{
 	public:
-		char* m_Name;
+		const char* m_Name;
 		const Transform *transform;
 		const Renderer *renderer;
 	
@@ -21,10 +21,11 @@ namespace reboot
 		bool m_IsActive;
 		std::vector<Component*> components;
 		int layer;
+        unsigned int tag;
 
 	public:
-		GameObject(char* name);
-		GameObject();
+		GameObject(const char* name);
+		GameObject():GameObject("GameObject"){}
 		~GameObject();
 		template <typename T>
 		T* getComponent();

@@ -3,13 +3,9 @@
 
 namespace reboot
 {
-	GameObject::GameObject()
+	GameObject::GameObject(const char* name):m_Name(name)
 	{
-		
-	}
-	GameObject::GameObject(char* name)
-	{
-		
+
 	}
 	void GameObject::addComponent(Component* component)
 	{

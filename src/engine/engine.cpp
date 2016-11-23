@@ -18,4 +18,8 @@ namespace reboot
 			m_ContextManager->update();
 	}
 
+    void Engine::setResolution(unsigned width, unsigned height) {
+
+    }
+
 }

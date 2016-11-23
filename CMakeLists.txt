@@ -16,7 +16,7 @@ set(GLEW_INCLUDE "${LIB_DIR}/glew-2.0.0/include")
 set(GLEW_STATIC)
 if (${TARGET} EQUAL "WIN64")
     set(GLEW_LIB "${LIB_DIR}/glew-2.0.0/lib/Release/x64/glew32s.lib")
-else()
+else ()
     set(GLEW_LIB "${LIB_DIR}/glew-2.0.0/lib/Release/Win32/glew32s.lib")
 endif ()
 
@@ -25,7 +25,7 @@ set(GLFW_INCLUDE "${LIB_DIR}/glfw-3.2.1/include")
 if (${TARGET} EQUAL "WIN64")
     set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64/glfw3.dll")
     set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64")
-else()
+else ()
     set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw/glfw3.dll")
     set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw")
 endif ()
@@ -44,7 +44,7 @@ set_target_properties(glew_static PROPERTIES
 link_directories(${GLFW_LIB})
 
 set(REBOOT_SOURCE
-        src/adapter/canvas/canvas.cpp src/adapter/canvas/window.cpp src/adapter/context/openGL/oglShader.cpp src/adapter/context/shaderProgram.cpp
+        src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/oglShader.cpp src/kernel/context/shaderProgram.cpp
         src/driver/contextManager.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
         )
@@ -52,9 +52,9 @@ set(REBOOT_INCLUDE
         include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/oglShader.h include/kernel/context/shaderProgram.h
         include/driver/contextManager.h
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
-        include/driver/mesh/mesh.h include/kernel/context/indexBuffer.h include/kernel/context/openGL/oglIndexBuffer.h include/kernel/opengl.h include/kernel/context/vertexArray.h include/kernel/context/openGL/oglVertexArray.h include/kernel/context/openGL/oglArrayBuffer.h include/kernel/context/arrayBuffer.h src/adapter/context/openGL/oglArrayBuffer.cpp)
+        include/driver/mesh/mesh.h include/kernel/context/indexBuffer.h include/kernel/context/openGL/oglIndexBuffer.h include/kernel/opengl.h include/kernel/context/vertexArray.h include/kernel/context/openGL/oglVertexArray.h include/kernel/context/openGL/oglArrayBuffer.h include/kernel/context/arrayBuffer.h src/kernel/context/openGL/oglArrayBuffer.cpp include/common/tree.h)
 
-set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/adapter/context/openGL/oglIndexBuffer.cpp src/adapter/context/openGL/oglVertexArray.cpp)
+set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/kernel/context/openGL/oglIndexBuffer.cpp src/kernel/context/openGL/oglVertexArray.cpp)
 
 #dll export
 #add_library(reboot SHARED ${SOURCE_FILES})

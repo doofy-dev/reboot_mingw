@@ -16,6 +16,7 @@ namespace reboot
         glm::mat4 *m_TransformationMatrix;
         glm::vec3 *position, *rotation, *scale;
     public:
+        //TODO what if i create a tree structure manager and using that instead of this nonsense?
         std::vector<GameObject*> children;
         GameObject* parent;
         Transform();
