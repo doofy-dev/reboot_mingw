@@ -10,6 +10,8 @@
 #define REBOOT_API
 #endif
 
+typedef unsigned char BYTE;
+
 //RENDERING CANVAS
 #define CANVAS_GLFW 0
 #define CANVAS_FRAME 0x00000010

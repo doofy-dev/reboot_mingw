@@ -1,15 +1,16 @@
 #pragma once
 
 #include "../../preprocessor.h"
+#include <driver/mesh/mesh.h>
 
 namespace reboot
 {
 	class REBOOT_API Renderer
 	{
-	private:
-		int m_ShaderID;
-		
+    private:
+        reboot_driver::Mesh *m_Mesh;
 	public:
-		void render();
+		Renderer(reboot_driver::Mesh*mesh):m_Mesh(mesh){}
+		 void render(BYTE renderMode) const :m_Mesh(mesh);
 	};
 }

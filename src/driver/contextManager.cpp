@@ -4,7 +4,7 @@
 #include <kernel/context/openGL/oglShader.h>
 
 namespace reboot_driver {
-    ContextManager::ContextManager(short contextType, short canvasType)
+    ContextManager::ContextManager(BYTE contextType, BYTE canvasType)
             : m_ContextType(contextType) {
         switch (canvasType) {
             case CANVAS_FRAME:

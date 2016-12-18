@@ -47,7 +47,7 @@ set(REBOOT_SOURCE
         src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/oglShader.cpp src/kernel/context/shaderProgram.cpp
         src/driver/contextManager.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
-        )
+        src/engine/mesh/mesh.cpp)
 set(REBOOT_INCLUDE
         include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/oglShader.h include/kernel/context/shaderProgram.h
         include/driver/contextManager.h

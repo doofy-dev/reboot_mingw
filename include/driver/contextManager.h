@@ -1,6 +1,7 @@
 #pragma once
 #include "../preprocessor.h"
 #include <vector>
+#include <afxres.h>
 #include "../kernel/canvas/canvas.h"
 #include "../kernel/context/shaderProgram.h"
 
@@ -13,7 +14,7 @@ namespace reboot_driver
 		reboot_kernel::Canvas *m_Canvas;
 		std::vector<reboot_kernel::ShaderProgram*> m_Programs;
 	public:
-		ContextManager(short contextType, short canvasType);
+		ContextManager(BYTE contextType, BYTE canvasType);
 		void update();
 		bool closed();
 		void start() { m_Canvas->create(); }

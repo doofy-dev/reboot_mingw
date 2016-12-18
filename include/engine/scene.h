@@ -11,6 +11,7 @@ namespace reboot
 	private:
 		char* m_Name;
 		//@TODO: Maybe std::list
+    public:
 		std::vector<GameObject*> m_GameObjects;
 	public:
 		Scene(char* name);
