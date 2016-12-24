@@ -1,6 +1,6 @@
 #pragma once
 
-#include <kernel/context/openGL/oglShader.h>
-#include <kernel/context/openGL/oglIndexBuffer.h>
-#include <kernel/context/openGL/oglVertexArray.h>
-#include <kernel/context/openGL/oglArrayBuffer.h>
+#include <kernel/context/openGL/shaderProgram.h>
+#include <kernel/context/openGL/indexBuffer.h>
+#include <kernel/context/openGL/vertexBuffer.h>
+#include <kernel/context/openGL/arrayBuffer.h>

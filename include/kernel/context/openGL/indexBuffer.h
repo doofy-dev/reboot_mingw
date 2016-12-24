@@ -4,10 +4,10 @@
 
 #include <kernel/context/indexBuffer.h>
 
-namespace reboot_kernel{
-    class REBOOT_API OGLIndexBuffer : public IndexBuffer{
+namespace reboot_kernel_opengl{
+    class REBOOT_API IndexBuffer : public reboot_kernel::IndexBuffer{
     public:
-        OGLIndexBuffer(unsigned *data, unsigned count):IndexBuffer(data, count){}
+        IndexBuffer(unsigned *data, unsigned count):reboot_kernel::IndexBuffer(data, count){}
     protected:
         void create() override;
         void clean() override;

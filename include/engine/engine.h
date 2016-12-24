@@ -1,6 +1,6 @@
 #pragma once
 #include <preprocessor.h>
-#include "../driver/contextManager.h"
+#include "driver/context.h"
 #include <engine/scene.h>
 #include <vector>
 #include <afxres.h>
@@ -17,7 +17,7 @@ namespace reboot
     private:
         int m_FpsLimit;
         BYTE m_RenderMode;
-		reboot_driver::ContextManager *m_ContextManager;
+		reboot_driver::Context *m_Contex;
 	public:
 		Engine(BYTE contextType, BYTE canvasType);
 		~Engine();

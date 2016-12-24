@@ -1,11 +1,11 @@
-#include <kernel/context/openGL/oglVertexArray.h>
+#include <kernel/context/openGL/vertexBuffer.h>
 #include <GL/glew.h>
 
-namespace reboot_kernel{
-    OGLVertexArray::OGLVertexArray():VertexArray() {
+namespace reboot_kernel_opengl{
+    VertexBuffer::VertexBuffer():reboot_kernel::VertexBuffer() {
         glGenVertexArrays(1, &m_BufferID);
     }
-    void OGLVertexArray::addBuffer(Buffer* buffer, unsigned index){
+    void VertexBuffer::addBuffer(reboot_kernel::Buffer* buffer, unsigned index){
         bind();
         buffer->bind();
         m_Buffers.push_back(buffer);
@@ -15,15 +15,15 @@ namespace reboot_kernel{
         buffer->unbind();
         unbind();
     }
-    OGLVertexArray::~OGLVertexArray() {
+    VertexBuffer::~VertexBuffer() {
         for (unsigned int i = 0; i < m_Buffers.size(); i++) {
             delete m_Buffers[i];
         }
     }
-    void OGLVertexArray::bind() {
+    void VertexBuffer::bind() {
         glBindVertexArray(m_BufferID);
     }
-    void OGLVertexArray::unbind() {
+    void VertexBuffer::unbind() {
         glBindVertexArray(0);
     }
 }

@@ -2,10 +2,6 @@
 #include <iostream>
 namespace reboot_kernel
 {
-	ShaderProgram::ShaderProgram()
-	{
-	}
-
 	ShaderProgram::~ShaderProgram(){}
 
 	void ShaderProgram::getUniforms(){}

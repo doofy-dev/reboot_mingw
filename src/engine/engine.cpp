@@ -7,11 +7,11 @@ namespace reboot
     Scene *Engine::m_Scene;
 	Engine::Engine(BYTE contextType, BYTE canvasType)
 	{
-		m_ContextManager = new reboot_driver::ContextManager(contextType, canvasType);
+		m_Contex = new reboot_driver::Context(contextType, canvasType);
 	}
 	Engine::~Engine()
 	{
-		delete m_ContextManager;
+		delete m_Contex;
 		delete m_Scene;
 	}
     void Engine::setScene(Scene *scene) {
@@ -19,18 +19,18 @@ namespace reboot
     }
 	void Engine::start()
 	{
-		m_ContextManager->start();
-		while (!m_ContextManager->closed()) {
+        m_Contex->m_Canvas->create();
+		while (!m_Contex->m_Canvas->closed()) {
             for(GameObject* g : m_Scene->m_GameObjects){
                 g->Update();
                 g->renderer->render(m_RenderMode);
             }
-            m_ContextManager->update();
+            m_Contex->m_Canvas->update();
         }
 	}
 
     void Engine::setResolution(unsigned width, unsigned height) {
-
+        m_Contex->m_Canvas->resize(width,height);
     }
 
 }

@@ -4,16 +4,16 @@
 #include <GL/glew.h>
 #include <vector>
 
-namespace reboot_kernel
+namespace reboot_kernel_opengl
 {
-	class REBOOT_API OGLShader :public ShaderProgram
+	class REBOOT_API ShaderProgram :public reboot_kernel::ShaderProgram
 	{
 	private:
 		std::vector<unsigned> m_ShaderFileID;
 		unsigned static build(GLuint type, const char* shader);
 	public:
-		OGLShader() :ShaderProgram(){}
-		~OGLShader() override;
+        ShaderProgram() :reboot_kernel::ShaderProgram(){}
+		~ShaderProgram() override;
 		bool addShader(short type, const char* shader) override;
 		void getUniforms() override;
 		void start() override;

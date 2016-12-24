@@ -11,6 +11,6 @@ namespace reboot
         reboot_driver::Mesh *m_Mesh;
 	public:
 		Renderer(reboot_driver::Mesh*mesh):m_Mesh(mesh){}
-		 void render(BYTE renderMode) const :m_Mesh(mesh);
+		 void render(BYTE renderMode) const{};
 	};
 }

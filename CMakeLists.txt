@@ -44,17 +44,17 @@ set_target_properties(glew_static PROPERTIES
 link_directories(${GLFW_LIB})
 
 set(REBOOT_SOURCE
-        src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/oglShader.cpp src/kernel/context/shaderProgram.cpp
-        src/driver/contextManager.cpp
+        src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/shaderProgram.cpp src/kernel/context/shaderProgram.cpp
+        src/driver/context.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
-        src/engine/mesh/mesh.cpp)
+        src/engine/mesh/mesh.cpp src/kernel/context/openGL/indexBuffer.cpp src/kernel/context/openGL/vertexBuffer.cpp)
 set(REBOOT_INCLUDE
-        include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/oglShader.h include/kernel/context/shaderProgram.h
-        include/driver/contextManager.h
+        include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/shaderProgram.h include/kernel/context/shaderProgram.h
+        include/driver/context.h
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
-        include/driver/mesh/mesh.h include/kernel/context/indexBuffer.h include/kernel/context/openGL/oglIndexBuffer.h include/kernel/opengl.h include/kernel/context/vertexArray.h include/kernel/context/openGL/oglVertexArray.h include/kernel/context/openGL/oglArrayBuffer.h include/kernel/context/arrayBuffer.h src/kernel/context/openGL/oglArrayBuffer.cpp include/common/tree.h src/common/math.h)
+        include/driver/mesh/mesh.h include/kernel/context/indexBuffer.h include/kernel/context/openGL/indexBuffer.h include/kernel/opengl.h include/kernel/context/vertexBuffer.h include/kernel/context/openGL/vertexBuffer.h include/kernel/context/openGL/arrayBuffer.h include/kernel/context/arrayBuffer.h src/kernel/context/openGL/arrayBuffer.cpp include/common/tree.h include/kernel/context/componentBuffer.h include/kernel/context/openGL/componentBuffer.h)
 
-set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE} src/kernel/context/openGL/oglIndexBuffer.cpp src/kernel/context/openGL/oglVertexArray.cpp)
+set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 
 #dll export
 #add_library(reboot SHARED ${SOURCE_FILES})

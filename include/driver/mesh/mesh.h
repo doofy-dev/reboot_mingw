@@ -4,11 +4,16 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <kernel/context/buffer.h>
 #include <vector>
+#include <kernel/context/vertexBuffer.h>
+#include <kernel/context/indexBuffer.h>
+#include <kernel/context/componentBuffer.h>
 
 namespace reboot_driver {
     class REBOOT_API Mesh {
     private:
-        reboot_kernel::Buffer  *VAO, *VBO, *IBO;
+        reboot_kernel::VertexBuffer  *VBO;
+//        reboot_kernel::VertexBuffer *VAO;
+        reboot_kernel::IndexBuffer *IBO;
         /*
          * A Vertex Array Object (VAO) is an object which contains one or more Vertex Buffer
          * Objects and is designed to store the information for a complete rendered object.
@@ -23,7 +28,7 @@ namespace reboot_driver {
         ~Mesh();
         void bind();
         void unbind();
-        void load(unsigned vertexLocation, float *vertexData, int vertexCount, unsigned componentCount, unsigned *vertexIndex, int indexCount);
-        void addBuffer(unsigned location, float *data, int count, unsigned componentCount);
+        void create(unsigned vertexLocation, float *vertexData, int vertexCount, unsigned componentCount, unsigned *vertexIndex, int indexCount);
+        void setBuffer(unsigned location, float *data, int count, unsigned componentCount);
     };
 }

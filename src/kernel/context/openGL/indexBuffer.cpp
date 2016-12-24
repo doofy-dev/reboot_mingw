@@ -1,9 +1,9 @@
-#include <kernel/context/openGL/oglIndexBuffer.h>
+#include <kernel/context/openGL/indexBuffer.h>
 #include <GL/glew.h>
 
-namespace reboot_kernel{
+namespace reboot_kernel_opengl{
 
-    void OGLIndexBuffer::create() {
+    void IndexBuffer::create() {
         glGenBuffers(1, &m_BufferID);
         bind();
 
@@ -11,14 +11,14 @@ namespace reboot_kernel{
         unbind();
     }
 
-    void OGLIndexBuffer::bind() {
+    void IndexBuffer::bind() {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID);
     }
 
-    void OGLIndexBuffer::unbind() {
+    void IndexBuffer::unbind() {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
-    void OGLIndexBuffer::clean(){
+    void IndexBuffer::clean(){
         glDeleteBuffers(1,&m_BufferID);
     }
 }

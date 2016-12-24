@@ -16,7 +16,6 @@ namespace reboot_kernel
         ShaderVariable* m_CurrentVariable;
 		unsigned int m_ShaderID;
 	public:
-		ShaderProgram();
 		virtual ~ShaderProgram();
 		unsigned int getID() const { return m_ShaderID; }
 		virtual void start() {}

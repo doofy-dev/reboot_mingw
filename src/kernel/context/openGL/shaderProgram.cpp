@@ -1,15 +1,15 @@
-#include <kernel/context/openGL/oglShader.h>
+#include <kernel/context/openGL/shaderProgram.h>
 #include <GL/glew.h>
 #include <iostream>
 
-namespace reboot_kernel
+namespace reboot_kernel_opengl
 {
-	OGLShader::~OGLShader()
+    ShaderProgram::~ShaderProgram()
 	{
 		m_ShaderID = glCreateProgram();
 	}
 
-	bool OGLShader::addShader(short shaderType, const char* shader)
+	bool ShaderProgram::addShader(short shaderType, const char* shader)
 	{
 		GLuint type = 0;
 		const char* st;
@@ -42,7 +42,7 @@ namespace reboot_kernel
 		m_ShaderFileID.push_back(id);
 		return true;
 	}
-	void OGLShader::start()
+	void ShaderProgram::start()
 	{
 		glLinkProgram(m_ShaderID);
 		glValidateProgram(m_ShaderID);
@@ -50,7 +50,7 @@ namespace reboot_kernel
 			glDeleteShader(id);
 		m_ShaderFileID.clear();
 	}
-	unsigned OGLShader::build(GLuint type, const char* shader)
+	unsigned ShaderProgram::build(GLuint type, const char* shader)
 	{
 		auto shaderID = glCreateShader(type);
 
@@ -72,7 +72,7 @@ namespace reboot_kernel
 		return shaderID;
 	}
 
-	void OGLShader::getUniforms()
+	void ShaderProgram::getUniforms()
 	{
         int numActiveUniforms=0;
         glGetProgramiv(m_ShaderID, GL_ACTIVE_UNIFORMS, &numActiveUniforms);
@@ -88,126 +88,126 @@ namespace reboot_kernel
             std::string name((char*)&nameData[0], actualLength - 1);
 
             //TODO: lenght, type and other infos are missing
-            ShaderVariable *variable = new ShaderVariable();
+            reboot_kernel::ShaderVariable *variable = new reboot_kernel::ShaderVariable();
             variable->ID=glGetUniformLocation(m_ShaderID,&name[0]);
             variable->name=&name[0];
             m_Uniforms.push_back(variable);
             nameData.clear();
         }
 	}
-	void OGLShader::getAttributes()
+	void ShaderProgram::getAttributes()
 	{
 	}
-	void OGLShader::bind()
+	void ShaderProgram::bind()
 	{
 		glUseProgram(m_ShaderID);
 	}
-	void OGLShader::unbind()
+	void ShaderProgram::unbind()
 	{
 		glUseProgram(0);
 	}
-	void OGLShader::load(float value)
+	void ShaderProgram::load(float value)
 	{
 		glUniform1f(m_CurrentVariable->ID, value);
 	}
-	void OGLShader::load(glm::vec2& value)
+	void ShaderProgram::load(glm::vec2& value)
 	{
 		glUniform2f(m_CurrentVariable->ID, value.x, value.y);
 	}
-	void OGLShader::load(glm::vec3& value)
+	void ShaderProgram::load(glm::vec3& value)
 	{
 		glUniform3f(m_CurrentVariable->ID, value.x, value.y, value.z);
 	}
-	void OGLShader::load(glm::vec4& value)
+	void ShaderProgram::load(glm::vec4& value)
 	{
 		glUniform4f(m_CurrentVariable->ID, value.x, value.y, value.z, value.w);
 	}
-	void OGLShader::load(double value)
+	void ShaderProgram::load(double value)
 	{
 		glUniform1d(m_CurrentVariable->ID, value);
 	}
-	void OGLShader::load(glm::dvec2& value)
+	void ShaderProgram::load(glm::dvec2& value)
 	{
 		glUniform2d(m_CurrentVariable->ID, value.x, value.y);
 	}
-	void OGLShader::load(glm::dvec3& value)
+	void ShaderProgram::load(glm::dvec3& value)
 	{
 		glUniform3d(m_CurrentVariable->ID, value.x, value.y, value.z);
 	}
-	void OGLShader::load(glm::dvec4& value)
+	void ShaderProgram::load(glm::dvec4& value)
 	{
 		glUniform4d(m_CurrentVariable->ID, value.x, value.y, value.z, value.w);
 	}
-	void OGLShader::load(int value)
+	void ShaderProgram::load(int value)
 	{
 		glUniform1i(m_CurrentVariable->ID, value);
 	}
-	void OGLShader::load(glm::ivec2& value)
+	void ShaderProgram::load(glm::ivec2& value)
 	{
 		glUniform2i(m_CurrentVariable->ID, value.x, value.y);
 	}
-	void OGLShader::load(glm::ivec3& value)
+	void ShaderProgram::load(glm::ivec3& value)
 	{
 		glUniform3i(m_CurrentVariable->ID, value.x, value.y, value.z);
 	}
-	void OGLShader::load(glm::ivec4& value)
+	void ShaderProgram::load(glm::ivec4& value)
 	{
 		glUniform4i(m_CurrentVariable->ID, value.x, value.y, value.z, value.w);
 	}
-	void OGLShader::load(unsigned value)
+	void ShaderProgram::load(unsigned value)
 	{
 		glUniform1ui(m_CurrentVariable->ID, value);
 	}
-	void OGLShader::load(glm::uvec2& value)
+	void ShaderProgram::load(glm::uvec2& value)
 	{
 		glUniform2ui(m_CurrentVariable->ID, value.x, value.y);
 	}
-	void OGLShader::load(glm::uvec3& value)
+	void ShaderProgram::load(glm::uvec3& value)
 	{
 		glUniform3ui(m_CurrentVariable->ID, value.x, value.y, value.z);
 	}
-	void OGLShader::load(glm::uvec4& value)
+	void ShaderProgram::load(glm::uvec4& value)
 	{
 		glUniform4ui(m_CurrentVariable->ID, value.x, value.y, value.z, value.w);
 	}
-	void OGLShader::load(bool value)
+	void ShaderProgram::load(bool value)
 	{
 		glUniform1i(m_CurrentVariable->ID, boolToInt(value));
 	}
-	void OGLShader::load(glm::bvec2& value)
+	void ShaderProgram::load(glm::bvec2& value)
 	{
 		glUniform2i(m_CurrentVariable->ID, boolToInt(value.x), boolToInt(value.y));
 	}
-	void OGLShader::load(glm::bvec3& value)
+	void ShaderProgram::load(glm::bvec3& value)
 	{
 		glUniform3i(m_CurrentVariable->ID, boolToInt(value.x), boolToInt(value.y), boolToInt(value.z));
 	}
-	void OGLShader::load(glm::bvec4& value)
+	void ShaderProgram::load(glm::bvec4& value)
 	{
 		glUniform4i(m_CurrentVariable->ID, boolToInt(value.x), boolToInt(value.y), boolToInt(value.z), boolToInt(value.w));
 	}
 
-	void OGLShader::load(glm::mat2x2& value)
+	void ShaderProgram::load(glm::mat2x2& value)
 	{
 		glUniformMatrix2fv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
-	void OGLShader::load(glm::mat3x3& value)
+	void ShaderProgram::load(glm::mat3x3& value)
 	{
 		glUniformMatrix3fv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
-	void OGLShader::load(glm::mat4x4& value)
+	void ShaderProgram::load(glm::mat4x4& value)
 	{
 		glUniformMatrix4fv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
-	void OGLShader::load(glm::dmat2x2& value)
+	void ShaderProgram::load(glm::dmat2x2& value)
 	{
 		glUniformMatrix2dv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
-	void OGLShader::load(glm::dmat3x3& value)
+	void ShaderProgram::load(glm::dmat3x3& value)
 	{
 		glUniformMatrix3dv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
-	void OGLShader::load(glm::dmat4x4& value)
+	void ShaderProgram::load(glm::dmat4x4& value)
 	{
 		glUniformMatrix4dv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
 	}
