@@ -91,11 +91,14 @@ namespace reboot_kernel
 		}
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
-		
+		glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
 	}
 
-	void Window::resize(int widht, int height)
+	void Window::resize(int width, int height, Canvas *canvas)
 	{
+        canvas->m_Width = width;
+        canvas->m_Height = height;
+        glViewport(0, 0, width, height);
 	}
 
 	void Window::setFullScreen(bool isFullScreen)
@@ -110,6 +113,7 @@ namespace reboot_kernel
 	{
 		Window*	win = (Window*)glfwGetWindowUserPointer(window);
 		std::cout << "Resize event" << std::endl;
+        resize(width,height,win);
 	}
 
 	void Window::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)

@@ -2,6 +2,8 @@
 #include <kernel/canvas/window.h>
 
 namespace reboot_driver {
+    Context *Context::current= nullptr;
+
     Context::Context(BYTE contextType, BYTE canvasType)
             : m_ContextType(contextType), m_CanvastType(canvasType) {
         switch (canvasType) {

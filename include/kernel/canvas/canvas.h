@@ -6,7 +6,7 @@ namespace reboot_kernel
 {
 	class Canvas
 	{
-	protected:
+    public:
 		int m_Width, m_Height;
 		char  *m_Title;
 		bool m_FullScreen;
@@ -27,7 +27,7 @@ namespace reboot_kernel
 		
 		virtual bool closed() { return true; }
 		virtual void update(){}
-		virtual void resize(int widht, int height){}
+		virtual void resize(int widht, int height,Canvas *canvas){}
 		virtual void setFullScreen(bool isFullScreen){}
 	};
 }

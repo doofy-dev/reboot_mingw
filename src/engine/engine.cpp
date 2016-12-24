@@ -30,7 +30,7 @@ namespace reboot
 	}
 
     void Engine::setResolution(unsigned width, unsigned height) {
-        m_Contex->m_Canvas->resize(width,height);
+        m_Contex->m_Canvas->resize(width,height, m_Contex->m_Canvas);
     }
 
 }
