@@ -33,5 +33,6 @@ namespace reboot_driver {
         reboot_kernel::ArrayBuffer *createArrayBuffer(float *data, unsigned count);
         reboot_kernel::IndexBuffer *createIBO(unsigned *data, unsigned count);
         reboot_kernel::ComponentBuffer *createComponentBuffer(float *data, unsigned count, unsigned componentCount);
+        reboot_kernel::ShaderProgram* createShader();
     };
 }

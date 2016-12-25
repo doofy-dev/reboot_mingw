@@ -7,7 +7,7 @@ namespace reboot_kernel
 {
 	class REBOOT_API Window: public Canvas
 	{
-	private:
+    protected:
 		GLFWwindow *m_Window;
 	public:
 		Window();
@@ -16,7 +16,7 @@ namespace reboot_kernel
 		void setTitle(char *title) override;
 		bool closed() override;
 		void update() override;
-		void resize(int widht, int height, Canvas *canvas) override;
+		void resize(int widht, int height) override;
 		void setFullScreen(bool isFullScreen) override;
 		void setCursor(bool enabled) override;
 		void window_resize(GLFWwindow *window, int width, int height);

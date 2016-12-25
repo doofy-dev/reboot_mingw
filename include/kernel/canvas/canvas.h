@@ -27,7 +27,7 @@ namespace reboot_kernel
 		
 		virtual bool closed() { return true; }
 		virtual void update(){}
-		virtual void resize(int widht, int height,Canvas *canvas){}
+		virtual void resize(int widht, int height){}
 		virtual void setFullScreen(bool isFullScreen){}
 	};
 }

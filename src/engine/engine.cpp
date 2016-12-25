@@ -8,6 +8,7 @@ namespace reboot
 	Engine::Engine(BYTE contextType, BYTE canvasType)
 	{
 		m_Contex = new reboot_driver::Context(contextType, canvasType);
+        m_Contex->m_Canvas->create();
 	}
 	Engine::~Engine()
 	{
@@ -19,7 +20,6 @@ namespace reboot
     }
 	void Engine::start()
 	{
-        m_Contex->m_Canvas->create();
 		while (!m_Contex->m_Canvas->closed()) {
             for(GameObject* g : m_Scene->m_GameObjects){
                 g->Update();
@@ -30,7 +30,7 @@ namespace reboot
 	}
 
     void Engine::setResolution(unsigned width, unsigned height) {
-        m_Contex->m_Canvas->resize(width,height, m_Contex->m_Canvas);
+        m_Contex->m_Canvas->resize(width,height);
     }
 
 }

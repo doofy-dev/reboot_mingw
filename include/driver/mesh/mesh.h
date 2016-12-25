@@ -7,6 +7,7 @@
 #include <kernel/context/vertexBuffer.h>
 #include <kernel/context/indexBuffer.h>
 #include <kernel/context/componentBuffer.h>
+#include <driver/material/material.h>
 
 namespace reboot_driver {
     class REBOOT_API Mesh {
@@ -14,6 +15,7 @@ namespace reboot_driver {
         reboot_kernel::VertexBuffer  *VBO;
 //        reboot_kernel::VertexBuffer *VAO;
         reboot_kernel::IndexBuffer *IBO;
+        Material *m_Material;
         /*
          * A Vertex Array Object (VAO) is an object which contains one or more Vertex Buffer
          * Objects and is designed to store the information for a complete rendered object.
@@ -27,6 +29,7 @@ namespace reboot_driver {
         Mesh();
         ~Mesh();
         void bind();
+        void setMaterial(Material *material){m_Material = material;}
         void unbind();
         void create(unsigned vertexLocation, float *vertexData, int vertexCount, unsigned componentCount, unsigned *vertexIndex, int indexCount);
         void setBuffer(unsigned location, float *data, int count, unsigned componentCount);
