@@ -10,8 +10,6 @@
 #define REBOOT_API
 #endif
 
-typedef unsigned char BYTE;
-
 //RENDERING CANVAS
 #define CANVAS_GLFW 0
 #define CANVAS_FRAME 0x0010
@@ -62,3 +60,21 @@ typedef unsigned char BYTE;
 #define REBOOT_CONTEXT_ERROR 0x1001
 #define REBOOT_SHADER_FAILED 0x1002
 
+typedef unsigned char BYTE;
+
+#include <string>
+#include <cstdlib>
+#include <cxxabi.h>
+
+template<typename T>
+std::string type_name()
+{
+    int status;
+    std::string tname = typeid(T).name();
+    char *demangled_name = abi::__cxa_demangle(tname.c_str(), NULL, NULL, &status);
+    if(status == 0) {
+        tname = demangled_name;
+        std::free(demangled_name);
+    }
+    return tname;
+}

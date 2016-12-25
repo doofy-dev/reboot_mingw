@@ -1,7 +1,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <reboot.h>
-#include <driver/mesh/mesh.h>
+#include <driver/material/material.h>
 #include "sample.h"
 
 
