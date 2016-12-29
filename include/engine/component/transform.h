@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gtc/type_ptr.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 
 #include "../../preprocessor.h"
@@ -14,6 +14,7 @@ namespace reboot
 	{
     private:
         glm::mat4 *m_TransformationMatrix;
+    public:
         glm::vec3 *position, *rotation, *scale;
     public:
         //TODO what if i create a tree structure manager and using that instead of this nonsense?

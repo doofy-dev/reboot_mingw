@@ -4,16 +4,15 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <kernel/context/buffer.h>
 #include <vector>
-#include <kernel/context/vertexBuffer.h>
+#include <kernel/context/vertexArray.h>
 #include <kernel/context/indexBuffer.h>
-#include <kernel/context/componentBuffer.h>
+#include <kernel/context/buffer.h>
 #include <driver/material/material.h>
 
 namespace reboot_driver {
     class REBOOT_API Mesh {
-    private:
-        reboot_kernel::VertexBuffer  *VBO;
-//        reboot_kernel::VertexBuffer *VAO;
+    public:
+        reboot_kernel::VertexArray  *VAO;
         reboot_kernel::IndexBuffer *IBO;
         Material *m_Material;
         /*
@@ -29,7 +28,7 @@ namespace reboot_driver {
         Mesh();
         ~Mesh();
         void bind();
-        void setMaterial(Material *material){m_Material = material;}
+        void setMaterial(Material *material){m_Material = material; material->start();}
         void unbind();
         void create(unsigned vertexLocation, float *vertexData, int vertexCount, unsigned componentCount, unsigned *vertexIndex, int indexCount);
         void setBuffer(unsigned location, float *data, int count, unsigned componentCount);

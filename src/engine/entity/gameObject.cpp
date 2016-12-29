@@ -1,11 +1,13 @@
 #include <engine/entity/gameObject.h>
 #include <engine/component/component.h>
+#include <engine/component/transform.h>
+#include <engine/component/renderer.h>
 
 namespace reboot
 {
 	GameObject::GameObject(const char* name):m_Name(name)
 	{
-
+        transform=new Transform();
 	}
 	void GameObject::addComponent(Component* component)
 	{

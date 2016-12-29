@@ -25,5 +25,8 @@ namespace reboot_kernel
 		void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	private:
 		bool prepare();
+
+
+    public:
 	};
 }

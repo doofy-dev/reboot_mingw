@@ -1,25 +1,16 @@
 #pragma once
 
 #include <preprocessor.h>
-#include <kernel/context/buffer.h>
+#include "buffer.h"
 
-
-namespace reboot_kernel {
-    class REBOOT_API IndexBuffer : public Buffer {
-    protected:
-        unsigned *m_Data;
+namespace reboot_kernel{
+    class IndexBuffer:public Buffer{
     public:
-        IndexBuffer(unsigned *data, unsigned count) : Buffer(count), m_Data(data) {}
-
-        unsigned *getData() {
-            return m_Data;
-        }
-
-        virtual void create() override {}
-        virtual void clean() override {}
+        IndexBuffer(unsigned *data, unsigned count):Buffer(){
+            create(data,count);
+        };
+        virtual void create(unsigned *data, unsigned count){}
         virtual void bind() override {}
-
         virtual void unbind() override {}
-
     };
 }

@@ -7,10 +7,10 @@ namespace reboot
 {
 	class REBOOT_API Renderer
 	{
-    private:
+    public:
         reboot_driver::Mesh *m_Mesh;
 	public:
 		Renderer(reboot_driver::Mesh*mesh):m_Mesh(mesh){}
-		 void render(BYTE renderMode) const{};
-	};
+        void render(BYTE rendermode);
+    };
 }

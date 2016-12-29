@@ -1,12 +1,20 @@
 #include <kernel/context/openGL/shaderProgram.h>
 #include <GL/glew.h>
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 namespace reboot_kernel_opengl
 {
+    ShaderProgram::ShaderProgram():reboot_kernel::ShaderProgram()
+	{
+        m_ShaderID = glCreateProgram();
+        errorCheck("shader create");
+        std::cout<<"Shaderprogram ID "<<m_ShaderID<<std::endl;
+	}
     ShaderProgram::~ShaderProgram()
 	{
-		m_ShaderID = glCreateProgram();
+
 	}
 
 	bool ShaderProgram::addShader(short shaderType, const char* shader)
@@ -38,17 +46,29 @@ namespace reboot_kernel_opengl
 			std::cout << st << " shader loading failed!" << std::endl;
 			return false;
 		}
+        std::cout << st << " shader loaded!" << std::endl;
 		glAttachShader(m_ShaderID, id);
+
 		m_ShaderFileID.push_back(id);
 		return true;
 	}
 	void ShaderProgram::start()
 	{
+        std::cout<<"opengl shader start"<<std::endl;
 		glLinkProgram(m_ShaderID);
+
+        errorCheck("linkshader");
 		glValidateProgram(m_ShaderID);
-		for(auto id :m_ShaderFileID)
+
+        errorCheck("validate");
+		for(auto id :m_ShaderFileID){
 			glDeleteShader(id);
+        }
+
+        errorCheck("deleteshader");
 		m_ShaderFileID.clear();
+        errorCheck("clear");
+        getUniforms();
 	}
 	unsigned ShaderProgram::build(GLuint type, const char* shader)
 	{
@@ -56,7 +76,6 @@ namespace reboot_kernel_opengl
 
 		glShaderSource(shaderID, 1, &shader, NULL);
 		glCompileShader(shaderID);
-
 		GLint result;
 		glGetShaderiv(shaderID, GL_COMPILE_STATUS, &result);
 		if (result == GL_FALSE)
@@ -65,21 +84,24 @@ namespace reboot_kernel_opengl
 			glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &length);
 			std::vector<char> error(length);
 			glGetShaderInfoLog(shaderID, length, &length, &error[0]);
-			std::cout << &error[0] << std::endl;
+			std::cout <<"SHADER ERROR "<< &error[0] << std::endl;
 			glDeleteShader(shaderID);
 			return 0;
 		}
 		return shaderID;
 	}
 
+    int ShaderProgram::getUniformValue(const char *name) {
+        return glGetUniformLocation(m_ShaderID,name);
+    }
+
 	void ShaderProgram::getUniforms()
 	{
         int numActiveUniforms=0;
-        glGetProgramiv(m_ShaderID, GL_ACTIVE_UNIFORMS, &numActiveUniforms);
-
+        glGetProgramiv(m_ShaderID, GL_ACTIVE_UNIFORM_BLOCKS, &numActiveUniforms);
+std::cout<<"Loading uniforms count: "<<numActiveUniforms<<" for shader "<<m_ShaderID<<std::endl;
         for (unsigned unif = 0; unif < numActiveUniforms; ++unif)
         {
-
             std::vector<GLchar> nameData(256);
             int arraySize = 0;
             GLenum type = 0;
@@ -91,6 +113,7 @@ namespace reboot_kernel_opengl
             reboot_kernel::ShaderVariable *variable = new reboot_kernel::ShaderVariable();
             variable->ID=glGetUniformLocation(m_ShaderID,&name[0]);
             variable->name=&name[0];
+            std::cout<<"Field: "<<variable->name<<" ID: "<<variable->ID<<std::endl;
             m_Uniforms.push_back(variable);
             nameData.clear();
         }
@@ -197,7 +220,9 @@ namespace reboot_kernel_opengl
 	}
 	void ShaderProgram::load(glm::mat4x4& value)
 	{
+        errorCheck("before mat4 load");
 		glUniformMatrix4fv(m_CurrentVariable->ID, 1, GL_FALSE, glm::value_ptr(value));
+        errorCheck("after mat4 load");
 	}
 	void ShaderProgram::load(glm::dmat2x2& value)
 	{

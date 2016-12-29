@@ -2,29 +2,17 @@
 
 #include <preprocessor.h>
 
-namespace reboot_kernel
-{
-
-//Abstract class for the buffers
-	class REBOOT_API Buffer
-	{
-	protected:
-		unsigned m_BufferID;
-		unsigned m_Count;
-
+namespace reboot_kernel{
+    class Buffer{
     public:
-        Buffer(unsigned count):m_BufferID(0),m_Count(count){
-            create();
-        }
-
-        virtual ~Buffer(){
-            clean();
-        }
+        unsigned m_ID=0;
+        unsigned m_ComponentCount=0;
+        unsigned m_Count=0;
+        Buffer(float* data, unsigned count, unsigned componentCount):m_ComponentCount(componentCount){create(data,count);}
+        Buffer(){create();}
+        virtual void bind(){}
+        virtual void unbind(){}
         virtual void create(){}
-		virtual void bind(){}
-		virtual void unbind(){}
-		virtual void clean(){}
-
-		inline unsigned int getCount() const { return m_Count; }
-	};
+        virtual void create(float* data, unsigned count){}
+    };
 }

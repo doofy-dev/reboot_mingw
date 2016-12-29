@@ -13,12 +13,14 @@ namespace reboot_kernel
 	protected:
 		std::vector<ShaderVariable*> m_Variables;
 		std::vector<ShaderVariable*> m_Uniforms;
-        ShaderVariable* m_CurrentVariable;
 		unsigned int m_ShaderID;
 	public:
-		virtual ~ShaderProgram();
+        ShaderVariable* m_CurrentVariable;
+
+        virtual ~ShaderProgram();
 		unsigned int getID() const { return m_ShaderID; }
-		virtual void start() {}
+		virtual void start() {getAttributes();getUniforms();}
+        virtual int getUniformValue(const char* name){}
 		int boolToInt(bool v){return v?1:0;}
 		virtual bool addShader(short shaderType, const char* shader) { return false; }
 		virtual void getUniforms();

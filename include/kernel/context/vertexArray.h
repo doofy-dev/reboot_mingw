@@ -1,17 +1,18 @@
 #pragma once
 
 #include <preprocessor.h>
-#include <kernel/context/buffer.h>
+#include "buffer.h"
+#include <vector>
 
 namespace reboot_kernel{
-    class ArrayBuffer : public Buffer{
+    class VertexArray:public Buffer{
     protected:
-        float* m_Data;
+        std::vector<Buffer*> m_Buffers;
     public:
-        ArrayBuffer(float* data, unsigned int count) :m_Data(data), Buffer(count) {}
+        VertexArray():Buffer(){create();}
         virtual void create() override {}
+        virtual void addBuffer(Buffer *buffer, unsigned index){}
         virtual void bind() override {}
         virtual void unbind() override {}
-        virtual void clean() override {}
     };
 }

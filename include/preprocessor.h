@@ -1,11 +1,11 @@
 #pragma once
 
 #ifdef REBOOT_LIB
-    #ifdef REBOOT_DYNAMIC
-        #define REBOOT_API __declspec(dllexport)
-    #else
-        #define REBOOT_API __declspec(dllimport)
-    #endif
+#ifdef REBOOT_DYNAMIC
+#define REBOOT_API __declspec(dllexport)
+#else
+#define REBOOT_API __declspec(dllimport)
+#endif
 #else
 #define REBOOT_API
 #endif
@@ -42,18 +42,16 @@
 
 //BUFFER TYPE
 #define BUFFER_TYPE_INDEXBUFFER 0
-#define BUFFER_TYPE_ARRAY 0x0051
-#define BUFFER_TYPE_VERTEXARRAY 0x0052
-#define BUFFER_TYPE_BUFFER 0x0053
-#define BUFFER_TYPE_FRAME 0x0055
-#define BUFFER_TYPE_INSTANCE 0x0056
+#define BUFFER_TYPE_VERTEXARRAY 0x0051
+#define BUFFER_TYPE_BUFFER 0x0052
+#define BUFFER_TYPE_FRAME 0x0053
 
 
 //Camera type
 #define CAMERA_PERSPECTIVE 0
 #define CAMERA_ORTHOGRAPHIC 0x0061
 
-#define MAX_LAYERS 12	//required?
+#define MAX_LAYERS 12    //required?
 
 //ERRORS
 #define REBOOT_UNAVAILABLE 0x1000
@@ -62,19 +60,27 @@
 
 typedef unsigned char BYTE;
 
+#include <iostream>
+#define errorCheck(c)({GLenum err; err = glGetError();if(err!=GL_NO_ERROR)std::cout<<"_______________________________________________________________"<<std::endl<<"["<<c<<"] THERE WAS AN ERROR: "<<err<<std::endl<<"_______________________________________________________________"<<std::endl;})
+
+
+#ifdef TYPE_FN
 #include <string>
 #include <cstdlib>
 #include <cxxabi.h>
+#include <GL/glew.h>
+#include <iostream>
+
 
 template<typename T>
-std::string type_name()
-{
+std::string type_name() {
     int status;
     std::string tname = typeid(T).name();
     char *demangled_name = abi::__cxa_demangle(tname.c_str(), NULL, NULL, &status);
-    if(status == 0) {
+    if (status == 0) {
         tname = demangled_name;
         std::free(demangled_name);
     }
     return tname;
 }
+#endif

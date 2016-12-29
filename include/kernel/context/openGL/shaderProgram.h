@@ -12,8 +12,9 @@ namespace reboot_kernel_opengl
 		std::vector<unsigned> m_ShaderFileID;
 		unsigned static build(GLuint type, const char* shader);
 	public:
-        ShaderProgram() :reboot_kernel::ShaderProgram(){}
+        ShaderProgram();
 		~ShaderProgram() override;
+        int getUniformValue(const char* name) override;
 		bool addShader(short type, const char* shader) override;
 		void getUniforms() override;
 		void start() override;

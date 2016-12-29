@@ -21,11 +21,8 @@ namespace reboot
 	void Engine::start()
 	{
 		while (!m_Contex->m_Canvas->closed()) {
-            for(GameObject* g : m_Scene->m_GameObjects){
-                g->Update();
-                g->renderer->render(m_RenderMode);
-            }
             m_Contex->m_Canvas->update();
+            m_Scene->update(m_RenderMode);
         }
 	}
 

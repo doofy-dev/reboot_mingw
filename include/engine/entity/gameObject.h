@@ -15,8 +15,8 @@ namespace reboot {
     class REBOOT_API GameObject {
     public:
         const char *m_Name;
-        const Transform *transform;
-        const Renderer *renderer;
+        Transform *transform;
+        Renderer *renderer;
 
     private:
         Tree<GameObject*> *node;
@@ -28,7 +28,8 @@ namespace reboot {
     public:
         GameObject(const char *name);
 
-        GameObject() : GameObject("GameObject") {}
+        GameObject() : GameObject("GameObject") {
+        }
 
         ~GameObject();
 
@@ -59,6 +60,6 @@ namespace reboot {
         bool isActive() { return m_IsActive; }
 
 
-        void Update();
+        virtual void Update();
     };
 }

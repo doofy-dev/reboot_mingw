@@ -1,6 +1,5 @@
 #include <driver/context.h>
 #include <kernel/canvas/window.h>
-#include <kernel/context/openGL/componentBuffer.h>
 
 namespace reboot_driver {
     Context *Context::current= nullptr;
@@ -18,27 +17,24 @@ namespace reboot_driver {
         current=this;
     }
 
-    reboot_kernel::Buffer *Context::createBuffer(unsigned count) {
-        return new reboot_kernel::Buffer(count);
+    reboot_kernel::Buffer *Context::createBuffer(float* data, unsigned count, unsigned componentCount) {
+        if (m_ContextType == CONTEXT_OPENGL4) {
+            return new reboot_kernel_opengl::Buffer(data,count,componentCount);
+        }
+        return nullptr;
     }
 
     reboot_kernel::Buffer *Context::createFBO() {
         return nullptr;
     }
 
-    reboot_kernel::VertexBuffer *Context::createVBO() {
+    reboot_kernel::VertexArray *Context::createVAO() {
         if (m_ContextType == CONTEXT_OPENGL4) {
-            return new reboot_kernel_opengl::VertexBuffer();
+            return new reboot_kernel_opengl::VertexArray();
         }
         return nullptr;
     }
 
-    reboot_kernel::ArrayBuffer *Context::createArrayBuffer(float *data, unsigned count) {
-        if (m_ContextType == CONTEXT_OPENGL4) {
-            return new reboot_kernel_opengl::ArrayBuffer(data, count);
-        }
-        return nullptr;
-    }
 
     reboot_kernel::IndexBuffer *Context::createIBO(unsigned *data, unsigned count) {
         if (m_ContextType == CONTEXT_OPENGL4) {
@@ -46,12 +42,7 @@ namespace reboot_driver {
         }
         return nullptr;
     }
-    reboot_kernel::ComponentBuffer *Context::createComponentBuffer(float *data, unsigned count, unsigned componentCount) {
-        if (m_ContextType == CONTEXT_OPENGL4) {
-            return new reboot_kernel_opengl::ComponentBuffer(data, count,componentCount);
-        }
-        return nullptr;
-    }
+
 
     reboot_kernel::ShaderProgram* Context::createShader(){
         if (m_ContextType == CONTEXT_OPENGL4) {
