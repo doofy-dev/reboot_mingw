@@ -34,20 +34,32 @@ configure_file(${GLFW_DYNAMIC} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/glfw3.dll COPYO
 #GLM
 set(GLM_INCLUDE "${LIB_DIR}/glm")
 
+#LUA
+set(LUA_INCLUDE "${LIB_DIR}/lua/include")
 
-include_directories(${INCLUDE_DIRECTORY} ${GLEW_INCLUDE} ${GLM_INCLUDE} ${GLFW_INCLUDE})
+
+include_directories(${INCLUDE_DIRECTORY} ${GLEW_INCLUDE} ${GLM_INCLUDE} ${GLFW_INCLUDE} ${LUA_INCLUDE})
 #link_libraries(${GLEW_LIB})
+
+
+add_library(lua_static STATIC IMPORTED)
+set_target_properties(lua_static PROPERTIES
+        IMPORTED_LOCATION ${LIB_DIR}/lua/liblua53.a)
+
+
 add_definitions(-DGLEW_STATIC)
 add_library(glew_static STATIC IMPORTED)
 set_target_properties(glew_static PROPERTIES
         IMPORTED_LOCATION ${GLEW_LIB})
+
+
 link_directories(${GLFW_LIB})
 
 set(REBOOT_SOURCE
         src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/shaderProgram.cpp src/kernel/context/shaderProgram.cpp
         src/driver/context.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
-        src/driver/mesh/mesh.cpp src/engine/component/renderer.cpp src/kernel/context/openGL/buffer.cpp src/kernel/context/openGL/indexBuffer.cpp src/kernel/context/openGL/vertexArray.cpp src/engine/entity/camera.cpp src/engine/component/transform.cpp)
+        src/driver/mesh/mesh.cpp src/engine/component/renderer.cpp src/kernel/context/openGL/buffer.cpp src/kernel/context/openGL/indexBuffer.cpp src/kernel/context/openGL/vertexArray.cpp src/engine/entity/camera.cpp src/engine/component/transform.cpp src/common/event/eventManager.cpp)
 
 set(REBOOT_INCLUDE
         include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/shaderProgram.h include/kernel/context/shaderProgram.h
@@ -64,4 +76,4 @@ set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 #exe export
 add_executable(reboot ${SOURCE_FILES})
 
-target_link_libraries(reboot glfw3 glew_static -lOpengl32 -static-libstdc++ -static-libgcc -Wwrite-strings)
+target_link_libraries(reboot glfw3 lua_static glew_static -lOpengl32 -static-libstdc++ -static-libgcc -Wwrite-strings)

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <common/event/event.h>
+#include <common/event/eventManager.h>
 
 namespace reboot_kernel {
     Window::Window() : Canvas(), m_Window(nullptr) {
@@ -97,6 +99,9 @@ namespace reboot_kernel {
 
     void Window::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
         Window *win = (Window *) glfwGetWindowUserPointer(window);
+        //@TODO: Convert key, action, mods to Reboot type
+        reboot::KeyEvent *e = new reboot::KeyEvent(key, scancode, action, mods);
+        reboot::EventManager::getInstance()->fire("key_pressed", *e );
 //        std::cout << "Key event" << std::endl;
     }
 
@@ -107,6 +112,8 @@ namespace reboot_kernel {
 
     void Window::cursor_position_callback(GLFWwindow *window, double xpos, double ypos) {
         Window *win = (Window *) glfwGetWindowUserPointer(window);
+        reboot::MoveEvent *e = new reboot::MoveEvent(xpos,ypos);
+        reboot::EventManager::getInstance()->fire("cursor_moved", *e );
 //        std::cout << "Cursor event" << std::endl;
     }
 }

@@ -13,13 +13,14 @@ namespace reboot
 	};
 	class REBOOT_API EventManager {
 	private:
-		EventManager();
 		std::vector<Subscription*> m_Subscription;
+    private:
+        EventManager(){}
+        Subscription* getSubscription(const char* name);
 	public:
 		static EventManager* getInstance();
 		void createEvent(const char* name);
 		void fire(const char* name, Event &e);
 		bool subscribe(const char* name, void(*callback)(Event));
-		Subscription* getSubscription(const char* name);
 	};
 }
