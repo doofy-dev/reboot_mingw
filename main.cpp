@@ -4,7 +4,7 @@
 #include <driver/io/fileLoader.h>
 #include "sample.h"
 #include <engine/component/renderer.h>
-
+#include <engine/component/component.h>
 
 #include <lua.hpp>
 
@@ -59,8 +59,8 @@ execute("sample.lua");
     s = new Scene((char *) "main");
     reboot_driver::Mesh *m = new reboot_driver::Mesh();
 
-    m->create(0,verticles, 4*3, 3, indices, 6);
-    m->setBuffer(1,colors,4*4,4);
+    m->create(0,verticles, vertCount, 3, indices, indiceCount);
+    m->setBuffer(1,colors,colorCount,4);
     reboot_driver::Material *mat = new reboot_driver::Material();
     const char* frag=reboot_driver::FileLoader::readAll("shader/sample_frag.glsl");
     const char* vert=reboot_driver::FileLoader::readAll("shader/sample_vert.glsl");
@@ -70,7 +70,7 @@ execute("sample.lua");
     GameObject *g = new GameObject();
     g->renderer=new Renderer(m);
     s->assignGameObject(g);
-
+    g->addComponent(new Component());
     Camera *c = new Camera(1024,768);
     s->assignCamera(c,true);
 

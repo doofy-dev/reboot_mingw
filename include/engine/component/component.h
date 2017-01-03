@@ -8,14 +8,14 @@ namespace reboot {
     class REBOOT_API Component {
     private:
         bool m_Enabled;
-    protected:
+    public:
         GameObject *gameObject;
     public:
         Component();
 
         ~Component();
 
-        virtual void update() {}
+        virtual void update();
 
         virtual void begin() {}
 
@@ -25,6 +25,5 @@ namespace reboot {
 
         void setActive(bool active) { m_Enabled = active; }
 
-        void Update();
     };
 }

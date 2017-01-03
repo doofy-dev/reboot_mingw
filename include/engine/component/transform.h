@@ -13,13 +13,15 @@ namespace reboot
 	class REBOOT_API Transform : public Component
 	{
     private:
-        glm::mat4 *m_TransformationMatrix;
+        glm::mat4 m_TransformationMatrix;
     public:
-        glm::vec3 *position, *rotation, *scale;
+        glm::vec3 position, rotation, scale;
     public:
         //TODO what if i create a tree structure manager and using that instead of this nonsense?
         std::vector<GameObject*> children;
         GameObject* parent;
         Transform();
-	};
+        void createTransformationMatrix();
+	    inline glm::mat4 getTransformationMatrix(){ return m_TransformationMatrix;}
+    };
 }

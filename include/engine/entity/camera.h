@@ -22,7 +22,7 @@ namespace reboot
 	public:
         Camera(int width, int height);
 		void Update() override;
-        glm::mat4 getViewMatrix(glm::vec3 *position, glm::vec3 *rotation);
+        glm::mat4 getViewMatrix(glm::vec3 position, glm::vec3 rotation);
         glm::mat4 getViewMatrix();
         void createProjectionMatrix();
         inline glm::mat4 getProjectionMatrix() { return m_ProjectionMatrix; }

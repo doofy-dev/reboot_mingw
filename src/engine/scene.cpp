@@ -1,6 +1,7 @@
 #include <engine/scene.h>
 #include <engine/component/renderer.h>
 #include <engine/entity/camera.h>
+#include <engine/component/transform.h>
 
 namespace reboot
 {
@@ -40,14 +41,15 @@ namespace reboot
         for(GameObject* g : m_GameObjects){
             g->Update();
             g->renderer->m_Mesh->m_Material->bind();
-            errorCheck("gu");
+            errorCheck("material bind");
+            g->transform->createTransformationMatrix();
+            g->renderer->m_Mesh->m_Material->set("model",g->transform->getTransformationMatrix());
+            errorCheck("mmat");
             g->renderer->m_Mesh->m_Material->set("view",view);
-
             errorCheck("vmat");
             g->renderer->m_Mesh->m_Material->set("proj",projection);
-
-
             errorCheck("pmat");
+
             g->renderer->render(rendermode);
 
             g->renderer->m_Mesh->m_Material->unbind();

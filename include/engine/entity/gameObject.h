@@ -4,13 +4,10 @@
 #include <common/tree.h>
 
 #include "../../preprocessor.h"
-
 namespace reboot {
     class Component;
-
-    class Transform;
-
     class Renderer;
+    class Transform;
 
     class REBOOT_API GameObject {
     public:

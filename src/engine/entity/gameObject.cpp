@@ -1,7 +1,6 @@
 #include <engine/entity/gameObject.h>
 #include <engine/component/component.h>
 #include <engine/component/transform.h>
-#include <engine/component/renderer.h>
 
 namespace reboot
 {
@@ -11,7 +10,8 @@ namespace reboot
 	}
 	void GameObject::addComponent(Component* component)
 	{
-		
+        component->gameObject=this;
+		components.push_back(component);
 	}
 	template <typename T>
 	T* GameObject::getComponent()
@@ -29,7 +29,7 @@ namespace reboot
 
     void GameObject::Update() {
         for(Component* component:components)
-            component->Update();
+            component->update();
     }
 
 }
