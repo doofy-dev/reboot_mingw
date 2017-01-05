@@ -67,7 +67,7 @@ set(REBOOT_INCLUDE
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
         include/driver/mesh/mesh.h include/kernel/opengl.h include/common/tree.h sample.h
         include/kernel/context/buffer.h include/kernel/context/indexBuffer.h include/kernel/context/vertexArray.h
-        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h  include/kernel/context/openGL/buffer.h)
+        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h  include/kernel/context/openGL/buffer.h include/driver/scripting/luaHandler.h)
 
 set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 

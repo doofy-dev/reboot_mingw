@@ -22,7 +22,8 @@ namespace reboot
 	{
 		while (!m_Contex->m_Canvas->closed()) {
             m_Contex->m_Canvas->update();
-            m_Scene->update(m_RenderMode);
+            if(m_Scene)
+                m_Scene->update(m_RenderMode);
         }
 	}
 

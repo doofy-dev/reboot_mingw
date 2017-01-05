@@ -18,7 +18,7 @@ namespace reboot
         Camera *mainCamera;
 	public:
 		Scene(char* name);
-		Scene();
+		Scene():Scene((char*)"Scene"){};
 		~Scene();
 		void assignGameObject(GameObject *g);
 		void assignCamera(Camera *c, bool main);

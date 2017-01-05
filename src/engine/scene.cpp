@@ -5,13 +5,9 @@
 
 namespace reboot
 {
-	Scene::Scene():m_Name((char*)"Scene")
-	{
-		
-	}
+
 	Scene::Scene(char* name) :m_Name(name)
 	{
-
 	}
 	Scene::~Scene()
 	{
@@ -36,6 +32,10 @@ namespace reboot
 	 }
 	void Scene::update(BYTE rendermode)
 	{
+        if(m_Cameras.size()==0){
+            std::cout<<"There is no camera!"<<std::endl;
+            return;
+        }
         glm::mat4 view = mainCamera->getViewMatrix();
         glm::mat4 projection = mainCamera->getProjectionMatrix();
         for(GameObject* g : m_GameObjects){

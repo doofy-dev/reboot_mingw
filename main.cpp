@@ -6,6 +6,7 @@
 #include <engine/component/renderer.h>
 #include <engine/component/component.h>
 
+#include <driver/scripting/luaHandler.h>
 #include <lua.hpp>
 
 void print_error(lua_State* state) {
@@ -23,6 +24,7 @@ void execute(const char* filename)
     // Make standard libraries available in the Lua object
     luaL_openlibs(state);
 
+    register_engine(state);
     int result;
 
     // Load the program; this supports both source code and bytecode files.
@@ -50,6 +52,9 @@ int main() {
 
 execute("sample.lua");
 
+
+//    lua_State *L = luaL_newstate();
+/*
     Engine a(CONTEXT_OPENGL4, CANVAS_GLFW);
     a.setFpsLimit(0);
     a.setResolution(1024,768);
@@ -60,7 +65,7 @@ execute("sample.lua");
     reboot_driver::Mesh *m = new reboot_driver::Mesh();
 
     m->create(0,verticles, vertCount, 3, indices, indiceCount);
-    m->setBuffer(1,colors,colorCount,4);
+    m->setBuffer(1,verticles,vertCount,3);
     reboot_driver::Material *mat = new reboot_driver::Material();
     const char* frag=reboot_driver::FileLoader::readAll("shader/sample_frag.glsl");
     const char* vert=reboot_driver::FileLoader::readAll("shader/sample_vert.glsl");
@@ -74,9 +79,8 @@ execute("sample.lua");
     Camera *c = new Camera(1024,768);
     s->assignCamera(c,true);
 
-
     a.setScene(s);
     glm::vec3(0, 0, 0);
-    a.start();
+    a.start();*/
     return 0;
 }
