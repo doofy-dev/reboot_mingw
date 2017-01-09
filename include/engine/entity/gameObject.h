@@ -2,7 +2,9 @@
 
 #include <vector>
 #include <common/tree.h>
-
+#include <engine/component/transform.h>
+#include <memory>
+#include <cereal/cereal.hpp>
 #include "../../preprocessor.h"
 namespace reboot {
     class Component;
@@ -28,8 +30,13 @@ namespace reboot {
         GameObject() : GameObject("GameObject") {
         }
 
-        ~GameObject();
+        template <class Archive>
+        void serialize( Archive & ar )
+        {
+            ar(std::string((m_Name)));
+        }
 
+        ~GameObject();
         template<typename T>
         T *getComponent();
 

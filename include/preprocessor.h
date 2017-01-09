@@ -58,6 +58,8 @@
 #define REBOOT_CONTEXT_ERROR 0x1001
 #define REBOOT_SHADER_FAILED 0x1002
 
+
+
 typedef unsigned char BYTE;
 
 #include <iostream>
@@ -82,5 +84,17 @@ std::string type_name() {
         std::free(demangled_name);
     }
     return tname;
+}
+#endif
+#ifdef WITH_TOSTRING
+#include <string>
+#include <sstream>
+namespace std{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
 }
 #endif

@@ -7,6 +7,6 @@
 --
 
 print("[LUA] Hello World\n")
-local engine = Engine(OPENGL,GLFW)
-engine:resolution(1920,1080)
-engine:start()
+--local engine = Engine(OPENGL,GLFW)
+--engine:resolution(1920,1080)
+--engine:start()

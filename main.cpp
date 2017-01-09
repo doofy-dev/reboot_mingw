@@ -7,7 +7,8 @@
 #include <engine/component/component.h>
 
 #include <driver/scripting/luaHandler.h>
-#include <lua.hpp>
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
 
 void print_error(lua_State* state) {
     // The error message is on top of the stack.
@@ -24,7 +25,7 @@ void execute(const char* filename)
     // Make standard libraries available in the Lua object
     luaL_openlibs(state);
 
-    register_engine(state);
+//    register_engine(state);
     int result;
 
     // Load the program; this supports both source code and bytecode files.
@@ -50,11 +51,10 @@ void execute(const char* filename)
 using namespace reboot;
 int main() {
 
-execute("sample.lua");
+//execute("sample.lua");
 
 
 //    lua_State *L = luaL_newstate();
-/*
     Engine a(CONTEXT_OPENGL4, CANVAS_GLFW);
     a.setFpsLimit(0);
     a.setResolution(1024,768);
@@ -79,8 +79,13 @@ execute("sample.lua");
     Camera *c = new Camera(1024,768);
     s->assignCamera(c,true);
 
+
+    std::ofstream os("out.cereal");
+    cereal::JSONOutputArchive archive(os);
+    archive(*g);
+
     a.setScene(s);
     glm::vec3(0, 0, 0);
-    a.start();*/
+    a.start();
     return 0;
 }

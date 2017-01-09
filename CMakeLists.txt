@@ -12,24 +12,27 @@ set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 #GLEW
-set(GLEW_INCLUDE "${LIB_DIR}/glew-2.0.0/include")
+set(GLEW_INCLUDE "${LIB_DIR}/glew/include")
 set(GLEW_STATIC)
-if (${TARGET} EQUAL "WIN64")
-    set(GLEW_LIB "${LIB_DIR}/glew-2.0.0/lib/Release/x64/glew32s.lib")
-else ()
-    set(GLEW_LIB "${LIB_DIR}/glew-2.0.0/lib/Release/Win32/glew32s.lib")
-endif ()
+
+set(GLEW_LIB "${LIB_DIR}/glew/lib/libglew32.a")
 
 #GLFW
+#set(GLFW_INCLUDE "${LIB_DIR}/glfw-3.2.1/include")
+#if (${TARGET} EQUAL "WIN64")
+#    set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64/glfw3.dll")
+#    set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64")
+#else ()
+#    set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw/glfw3.dll")
+#    set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw")
+#endif ()
+#configure_file(${GLFW_DYNAMIC} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/glfw3.dll COPYONLY)
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+add_subdirectory("${LIB_DIR}/glfw-3.2.1")
 set(GLFW_INCLUDE "${LIB_DIR}/glfw-3.2.1/include")
-if (${TARGET} EQUAL "WIN64")
-    set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64/glfw3.dll")
-    set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw-w64")
-else ()
-    set(GLFW_DYNAMIC "${LIB_DIR}/glfw-3.2.1/lib-mingw/glfw3.dll")
-    set(GLFW_LIB "${LIB_DIR}/glfw-3.2.1/lib-mingw")
-endif ()
-configure_file(${GLFW_DYNAMIC} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/glfw3.dll COPYONLY)
 
 #GLM
 set(GLM_INCLUDE "${LIB_DIR}/glm")
@@ -37,14 +40,17 @@ set(GLM_INCLUDE "${LIB_DIR}/glm")
 #LUA
 set(LUA_INCLUDE "${LIB_DIR}/lua/include")
 
+#CEREAL
+set(CEREAL_INCLUDE "${LIB_DIR}/cereal-1.2.1/include")
 
-include_directories(${INCLUDE_DIRECTORY} ${GLEW_INCLUDE} ${GLM_INCLUDE} ${GLFW_INCLUDE} ${LUA_INCLUDE})
+
+include_directories(${INCLUDE_DIRECTORY} ${GLEW_INCLUDE} ${GLM_INCLUDE} ${GLFW_INCLUDE} ${LUA_INCLUDE} ${CEREAL_INCLUDE})
 #link_libraries(${GLEW_LIB})
 
 
 add_library(lua_static STATIC IMPORTED)
 set_target_properties(lua_static PROPERTIES
-        IMPORTED_LOCATION ${LIB_DIR}/lua/liblua53.a)
+        IMPORTED_LOCATION ${LIB_DIR}/lua/liblua.a)
 
 
 add_definitions(-DGLEW_STATIC)
@@ -67,7 +73,7 @@ set(REBOOT_INCLUDE
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
         include/driver/mesh/mesh.h include/kernel/opengl.h include/common/tree.h sample.h
         include/kernel/context/buffer.h include/kernel/context/indexBuffer.h include/kernel/context/vertexArray.h
-        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h  include/kernel/context/openGL/buffer.h include/driver/scripting/luaHandler.h)
+        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h include/kernel/context/openGL/buffer.h include/driver/scripting/luaHandler.h)
 
 set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 
@@ -76,4 +82,4 @@ set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 #exe export
 add_executable(reboot ${SOURCE_FILES})
 
-target_link_libraries(reboot glfw3 lua_static glew_static -lOpengl32 -static-libstdc++ -static-libgcc -Wwrite-strings)
+target_link_libraries(reboot glfw lua_static glew_static -lOpengl32 -static-libstdc++ -static-libgcc -Wwrite-strings)
