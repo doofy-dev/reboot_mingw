@@ -9,6 +9,7 @@ namespace reboot
 	{
 		m_Contex = new reboot_driver::Context(contextType, canvasType);
         m_Contex->m_Canvas->create();
+        input=new reboot_driver::Input();
 	}
 	Engine::~Engine()
 	{

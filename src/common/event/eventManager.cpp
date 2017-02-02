@@ -3,31 +3,30 @@
 #include <cstring>
 
 namespace reboot{
-    EventManager* EventManager::getInstance() {
-        static EventManager* inst = new EventManager();
+    EventManager& EventManager::getInstance() {
+        static EventManager inst;
         return inst;
     }
 
-    void EventManager::createEvent(const char *name) {
+    Subscription* EventManager::createEvent(const char *name) {
         auto s = new Subscription();
         s->name=name;
         m_Subscription.push_back(s);
+        return s;
     }
 
-    bool EventManager::subscribe(const char *name, void (*callback)(Event)) {
+    bool EventManager::subscribe(const char *name, EventFun callback) {
         auto s = getSubscription(name);
         if(s!= nullptr) {
-            s->m_Events.push_back(callback);
+            s->addEvent(callback);
             return true;
         }
         return false;
     }
-    void EventManager::fire(const char *name, Event &e) {
+    void EventManager::fire(const char *name, Event *e) {
         auto s = getSubscription(name);
         if(s!= nullptr){
-            for (void(*callback)(Event) : s->m_Events) {
-                callback(e);
-            }
+            s->fire(e);
         }
     }
     Subscription* EventManager::getSubscription(const char *name) {

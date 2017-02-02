@@ -65,7 +65,7 @@ set(REBOOT_SOURCE
         src/kernel/canvas/canvas.cpp src/kernel/canvas/window.cpp src/kernel/context/openGL/shaderProgram.cpp src/kernel/context/shaderProgram.cpp
         src/driver/context.cpp
         src/engine/entity/gameObject.cpp src/engine/engine.cpp src/engine/scene.cpp src/engine/component/component.cpp
-        src/driver/mesh/mesh.cpp src/engine/component/renderer.cpp src/kernel/context/openGL/buffer.cpp src/kernel/context/openGL/indexBuffer.cpp src/kernel/context/openGL/vertexArray.cpp src/engine/entity/camera.cpp src/engine/component/transform.cpp src/common/event/eventManager.cpp)
+        src/driver/mesh/mesh.cpp src/engine/component/renderer.cpp src/kernel/context/openGL/buffer.cpp src/kernel/context/openGL/indexBuffer.cpp src/kernel/context/openGL/vertexArray.cpp src/engine/entity/camera.cpp src/engine/component/transform.cpp src/common/event/eventManager.cpp include/common/simplexNoise.h src/common/simplexNoise.cpp src/driver/io/input.cpp)
 
 set(REBOOT_INCLUDE
         include/kernel/canvas/canvas.h include/kernel/canvas/window.h include/kernel/context/openGL/shaderProgram.h include/kernel/context/shaderProgram.h
@@ -73,7 +73,7 @@ set(REBOOT_INCLUDE
         include/engine/entity/gameObject.h include/engine/engine.h include/engine/scene.h
         include/driver/mesh/mesh.h include/kernel/opengl.h include/common/tree.h sample.h
         include/kernel/context/buffer.h include/kernel/context/indexBuffer.h include/kernel/context/vertexArray.h
-        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h include/kernel/context/openGL/buffer.h include/driver/scripting/luaHandler.h)
+        include/kernel/context/openGL/vertexArray.h include/kernel/context/openGL/indexBuffer.h include/kernel/context/openGL/buffer.h include/driver/scripting/luaHandler.h include/engine/component/script.h include/driver/io/input.h)
 
 set(SOURCE_FILES main.cpp ${REBOOT_SOURCE} ${REBOOT_INCLUDE})
 

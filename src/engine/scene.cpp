@@ -2,7 +2,6 @@
 #include <engine/component/renderer.h>
 #include <engine/entity/camera.h>
 #include <engine/component/transform.h>
-
 namespace reboot
 {
 
@@ -38,6 +37,7 @@ namespace reboot
         }
         glm::mat4 view = mainCamera->getViewMatrix();
         glm::mat4 projection = mainCamera->getProjectionMatrix();
+
         for(GameObject* g : m_GameObjects){
             g->Update();
             g->renderer->m_Mesh->m_Material->bind();

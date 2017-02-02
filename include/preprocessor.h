@@ -46,6 +46,9 @@
 #define BUFFER_TYPE_BUFFER 0x0052
 #define BUFFER_TYPE_FRAME 0x0053
 
+//SCRIPT TYPE
+#define SCRIPT_LUA 0
+
 
 //Camera type
 #define CAMERA_PERSPECTIVE 0

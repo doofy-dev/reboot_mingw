@@ -3,6 +3,7 @@
 #include <vector>
 #include "entity/camera.h"
 
+
 #include "../preprocessor.h"
 #include "entity/gameObject.h"
 namespace reboot
@@ -11,6 +12,7 @@ namespace reboot
 	{
 	private:
 		char* m_Name;
+
 		//@TODO: Maybe std::list
     public:
 		std::vector<GameObject*> m_GameObjects;

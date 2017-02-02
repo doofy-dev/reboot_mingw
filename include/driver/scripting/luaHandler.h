@@ -25,37 +25,37 @@
 #define L_Value(L,value,name){}
 #endif
 
-//
-//#include <engine/engine.h>
-//
-//static int create(lua_State *L){
-//    L_Cast(L,reboot::Engine,ENGINE)->start();
-//
-//    return 0;
-//}
-//static int resolution(lua_State *L){
-//    unsigned w =(unsigned) lua_tonumber(L, 2);
-//    unsigned h = (unsigned) lua_tonumber(L, 3);
-//    L_Cast(L,reboot::Engine,ENGINE)->setResolution(w,h);
-//    return 0;
-//}
-//static int engine_new(lua_State *L){
-//    int canvas = (int)luaL_checknumber(L, 1);
-//    int context= (int)luaL_checknumber(L, 2);
-//    L_Create(L,reboot::Engine,ENGINE,canvas,context);
-//    return 1;
-//}
-//static int del_engine(lua_State *L){
-//    L_Delete(L,reboot::Engine);
-//}
-//static void register_engine(lua_State *L){
-//    L_GlobalInt(L,0,"OPENGL");
-//    L_GlobalInt(L,0,"GLFW");
-//    L_Register(L,ENGINE, engine_new);
-//    L_Value(L,-1,"__index");
-//    L_PushFunction(L,del_engine,"__gc",-2);
-//    L_PushFunction(L,create,"start",-2);
-//    L_PushFunction(L,resolution,"resolution",-2);
-//
-//    lua_pop(L, 1);
-//}
+
+#include <engine/engine.h>
+
+static int create(lua_State *L){
+    L_Cast(L,reboot::Engine,ENGINE)->start();
+
+    return 0;
+}
+static int resolution(lua_State *L){
+    unsigned w =(unsigned) lua_tonumber(L, 2);
+    unsigned h = (unsigned) lua_tonumber(L, 3);
+    L_Cast(L,reboot::Engine,ENGINE)->setResolution(w,h);
+    return 0;
+}
+static int engine_new(lua_State *L){
+    int canvas = (int)luaL_checknumber(L, 1);
+    int context= (int)luaL_checknumber(L, 2);
+    L_Create(L,reboot::Engine,ENGINE,canvas,context);
+    return 1;
+}
+static int del_engine(lua_State *L){
+    L_Delete(L,reboot::Engine);
+}
+static void register_engine(lua_State *L){
+    L_GlobalInt(L,0,"OPENGL");
+    L_GlobalInt(L,0,"GLFW");
+    L_Register(L,ENGINE, engine_new);
+    L_Value(L,-1,"__index");
+    L_PushFunction(L,del_engine,"__gc",-2);
+    L_PushFunction(L,create,"start",-2);
+    L_PushFunction(L,resolution,"resolution",-2);
+
+    lua_pop(L, 1);
+}

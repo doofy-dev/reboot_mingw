@@ -3,14 +3,15 @@
 #include "driver/context.h"
 #include <engine/scene.h>
 #include <vector>
-#include <afxres.h>
-
+#include <reboot.h>
+#include <driver/io/input.h>
 namespace reboot
 {
 	class REBOOT_API Engine
     {
     public:
         static Scene *m_Scene;
+        reboot_driver::Input *input;
 
     protected:
         std::vector<const char*> m_Tags;
